@@ -2,6 +2,7 @@ package com.arctrls.timeanddomainlogic;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,6 +15,7 @@ import java.time.Instant;
 @Entity
 @Getter
 @NoArgsConstructor
+@Accessors(fluent = true)
 class Post {
 
     @Id
