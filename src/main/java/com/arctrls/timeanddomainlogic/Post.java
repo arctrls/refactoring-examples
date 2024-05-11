@@ -44,13 +44,13 @@ class Post {
         this.createdAt = createdAt;
     }
 
-    Integer measurePostAge() {
+    int measurePostAge() {
         final Instant now = Instant.now();
         final int hours = Duration.between(createdAt, now).toHoursPart();
         return 5 > hours ? 1 : hours / 5;
     }
 
-    void updatePopularity(final long likeCount, final long postAge) {
+    void updatePopularity(final long likeCount, final int postAge) {
         popularity = (likeCount + viewCount) / postAge;
     }
 
