@@ -45,7 +45,6 @@ class Post {
     }
 
     void updatePopularity(final Instant now) {
-        final long likeCount = likeCount();
         final int postAge = measurePostAge(now);
         popularity = (likeCount + viewCount) / postAge;
     }
