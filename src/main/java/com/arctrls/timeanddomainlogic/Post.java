@@ -44,9 +44,9 @@ class Post {
         this.createdAt = createdAt;
     }
 
-    void updatePopularity() {
+    void updatePopularity(final Instant now) {
         final long likeCount = likeCount();
-        final int postAge = measurePostAge(Instant.now());
+        final int postAge = measurePostAge(now);
         updatePopularity(likeCount, postAge);
     }
 

@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.util.List;
 
 @Service
@@ -17,7 +18,7 @@ public class UpdatePostPopularityUseCase {
         final List<Post> posts = postRepository.findAll();
 
         for (final Post post : posts) {
-            post.updatePopularity();
+            post.updatePopularity(Instant.now());
             postRepository.save(post);
         }
     }
