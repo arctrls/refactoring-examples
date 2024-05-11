@@ -17,14 +17,9 @@ public class UpdatePostPopularityUseCase {
         final List<Post> posts = postRepository.findAll();
 
         for (final Post post : posts) {
-            updatePopularity(post);
+            post.updatePopularity();
             postRepository.save(post);
         }
     }
 
-    private void updatePopularity(final Post post) {
-        final long likeCount = post.likeCount();
-        final int postAge = post.measurePostAge();
-        post.updatePopularity(likeCount, postAge);
-    }
 }
