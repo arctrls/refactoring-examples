@@ -7,6 +7,3 @@ spring:
       data-locations: classpath:sql/data.sql
   jpa:
     open-in-view: false
-  output:
-    ansi:
-      enabled: detect
