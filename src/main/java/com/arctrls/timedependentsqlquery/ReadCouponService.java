@@ -13,7 +13,7 @@ class ReadCouponService {
     private final CouponDao couponDao;
 
     @Transactional(readOnly = true)
-    boolean isDownloadable(final Long couponId) {
-        return couponDao.isDownloadable(couponId, Instant.now());
+    boolean isDownloadable(final Long couponId, final Instant now) {
+        return couponDao.isDownloadable(couponId, now);
     }
 }

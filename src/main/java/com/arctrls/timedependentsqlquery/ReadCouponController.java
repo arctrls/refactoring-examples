@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.Instant;
+
 @RestController
 @RequiredArgsConstructor
 class ReadCouponController {
@@ -12,7 +14,7 @@ class ReadCouponController {
 
     @GetMapping("/coupon/{couponId}")
     CouponResponse coupon(@PathVariable("couponId") final Long couponId) {
-        final boolean isDownloadable = readCouponService.isDownloadable(couponId);
+        final boolean isDownloadable = readCouponService.isDownloadable(couponId, Instant.now());
         return new CouponResponse(couponId, isDownloadable);
     }
 
