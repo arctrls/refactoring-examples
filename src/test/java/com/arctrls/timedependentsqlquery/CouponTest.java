@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.time.Instant;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CouponTest {
@@ -27,5 +28,29 @@ class CouponTest {
         final var isDownloadable = coupon.isDownloadable(currentTime);
 
         assertTrue(isDownloadable);
+    }
+
+    @Test
+    void isDownloadable_ShouldReturnFalse_WhenTimeIs1NanoSecBeforeAvailableFrom() {
+        final var availableFrom = Instant.parse("2021-12-25T00:00:00Z");
+        final var availableTo = Instant.parse("2021-12-25T23:59:59Z");
+        final var currentTime = availableFrom.minusNanos(1);
+        final var coupon = new Coupon(availableFrom, availableTo);
+
+        final var isDownloadable = coupon.isDownloadable(currentTime);
+
+        assertFalse(isDownloadable);
+    }
+
+    @Test
+    void isDownloadable_ShouldReturnFalse_WhenTimeIs1NanoSecAfterAvailableTo() {
+        final var availableFrom = Instant.parse("2021-12-25T00:00:00Z");
+        final var availableTo = Instant.parse("2021-12-25T23:59:59Z");
+        final var currentTime = availableTo.plusNanos(1);
+        final var coupon = new Coupon(availableFrom, availableTo);
+
+        final var isDownloadable = coupon.isDownloadable(currentTime);
+
+        assertFalse(isDownloadable);
     }
 }
