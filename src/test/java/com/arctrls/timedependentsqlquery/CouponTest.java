@@ -52,4 +52,18 @@ class CouponTest {
 
         assertFalse(isDownloadable);
     }
+
+    @Test
+    void isDownloadable_ShouldReturnTrue_WhenTimeIsEqualToAvailableFrom() {
+        final var isDownloadable = coupon.isDownloadable(availableFrom);
+
+        assertTrue(isDownloadable);
+    }
+
+    @Test
+    void isDownloadable_ShouldReturnTrue_WhenTimeIsEqualToAvailableTo() {
+        final var isDownloadable = coupon.isDownloadable(availableTo);
+
+        assertTrue(isDownloadable);
+    }
 }
