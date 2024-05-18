@@ -31,6 +31,7 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.rest-assured:rest-assured:5.4.0")
+    testRuntimeOnly("p6spy:p6spy:3.9.1")
 }
 
 tasks.test {
