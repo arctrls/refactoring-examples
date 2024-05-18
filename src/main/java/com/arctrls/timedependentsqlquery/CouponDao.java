@@ -1,4 +1,4 @@
-package com.arctrls.timebasedcoupon;
+package com.arctrls.timedependentsqlquery;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;

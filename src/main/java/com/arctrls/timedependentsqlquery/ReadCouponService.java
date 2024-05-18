@@ -1,4 +1,4 @@
-package com.arctrls.timebasedcoupon;
+package com.arctrls.timedependentsqlquery;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

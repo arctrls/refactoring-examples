@@ -1,4 +1,4 @@
-package com.arctrls.timebasedcoupon;
+package com.arctrls.timedependentsqlquery;
 
 import com.arctrls.supports.IntegrationTest;
 import io.restassured.RestAssured;
