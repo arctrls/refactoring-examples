@@ -1,5 +1,6 @@
 package com.arctrls.timedependentsqlquery;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.Instant;
@@ -9,21 +10,25 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CouponTest {
+    private final Instant availableFrom = Instant.parse("2021-12-25T00:00:00Z");
+    private final Instant availableTo = Instant.parse("2021-12-25T23:59:59Z");
+
+    private Coupon coupon;
+
+    @BeforeEach
+    void setUp() {
+        coupon = new Coupon(availableFrom, availableTo);
+    }
 
     @Test
     void isDownloadable_ShouldThrowException_WhenArgumentIsNull() {
-        final var coupon = new Coupon();
-
         assertThatThrownBy(() -> coupon.isDownloadable(null))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void isDownloadable_ShouldReturnTrue_WhenTimeIsDownloadable() {
-        final var availableFrom = Instant.parse("2021-12-25T00:00:00Z");
-        final var availableTo = Instant.parse("2021-12-25T23:59:59Z");
         final var currentTime = Instant.parse("2021-12-25T12:00:00Z");
-        final var coupon = new Coupon(availableFrom, availableTo);
 
         final var isDownloadable = coupon.isDownloadable(currentTime);
 
@@ -32,10 +37,7 @@ class CouponTest {
 
     @Test
     void isDownloadable_ShouldReturnFalse_WhenTimeIs1NanoSecBeforeAvailableFrom() {
-        final var availableFrom = Instant.parse("2021-12-25T00:00:00Z");
-        final var availableTo = Instant.parse("2021-12-25T23:59:59Z");
         final var currentTime = availableFrom.minusNanos(1);
-        final var coupon = new Coupon(availableFrom, availableTo);
 
         final var isDownloadable = coupon.isDownloadable(currentTime);
 
@@ -44,10 +46,7 @@ class CouponTest {
 
     @Test
     void isDownloadable_ShouldReturnFalse_WhenTimeIs1NanoSecAfterAvailableTo() {
-        final var availableFrom = Instant.parse("2021-12-25T00:00:00Z");
-        final var availableTo = Instant.parse("2021-12-25T23:59:59Z");
         final var currentTime = availableTo.plusNanos(1);
-        final var coupon = new Coupon(availableFrom, availableTo);
 
         final var isDownloadable = coupon.isDownloadable(currentTime);
 
