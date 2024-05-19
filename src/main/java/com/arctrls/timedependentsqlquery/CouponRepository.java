@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Select;
 import java.util.Optional;
 
 @Mapper
-interface CouponDao {
+interface CouponRepository {
 
     @Select("""
             select id, name, start_dt availableFrom, end_dt availableTo
