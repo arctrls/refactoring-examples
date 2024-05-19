@@ -23,6 +23,6 @@ public class Coupon {
 
     public boolean isDownloadable(final Instant now) {
         Assert.notNull(now, "[now] must not be null.");
-        return true;
+        return now.isAfter(availableFrom) && now.isBefore(availableTo);
     }
 }
