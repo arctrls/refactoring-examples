@@ -11,11 +11,11 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 class ReadCouponService {
-    private final CouponDao couponDao;
+    private final CouponRepository couponRepository;
 
     @Transactional(readOnly = true)
     boolean isDownloadable(final Long couponId, final Instant now) {
-        final Optional<Coupon> optionalCoupon = couponDao.findById(couponId);
+        final Optional<Coupon> optionalCoupon = couponRepository.findById(couponId);
         return optionalCoupon
                 .map(coupon -> coupon.isDownloadable(now))
                 .orElse(false);

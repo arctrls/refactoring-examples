@@ -9,9 +9,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @IntegrationTest
-class CouponDaoTest {
+class CouponRepositoryTest {
 
-    @Autowired private CouponDao sut;
+    @Autowired private CouponRepository sut;
 
     @Test
     void findById() {
