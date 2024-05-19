@@ -14,6 +14,9 @@ class ReadCouponService {
 
     @Transactional(readOnly = true)
     boolean isDownloadable(final Long couponId, final Instant now) {
-        return couponDao.isDownloadable(couponId, now);
+        final Optional<Coupon> optionalCoupon = couponDao.findById(couponId);
+        return optionalCoupon
+                .map(coupon -> coupon.isDownloadable(now))
+                .orElse(false);
     }
 }
