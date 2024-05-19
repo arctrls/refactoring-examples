@@ -17,5 +17,10 @@ interface CouponDao {
             """)
     boolean isDownloadable(final Long couponId, final Instant now);
 
+    @Select("""
+            select id, name, start_dt availableFrom, end_dt availableTo
+            from coupon
+            where id = #{couponId};
+            """)
     Optional<Coupon> findById(final Long couponId);
 }
