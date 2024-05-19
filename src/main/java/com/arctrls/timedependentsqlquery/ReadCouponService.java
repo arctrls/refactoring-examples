@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
-import java.util.Optional;
 
 
 @Service
@@ -15,8 +14,7 @@ class ReadCouponService {
 
     @Transactional(readOnly = true)
     boolean isDownloadable(final Long couponId, final Instant now) {
-        final Optional<Coupon> optionalCoupon = couponRepository.findById(couponId);
-        return optionalCoupon
+        return couponRepository.findById(couponId)
                 .map(coupon -> coupon.isDownloadable(now))
                 .orElse(false);
     }
