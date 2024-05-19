@@ -10,10 +10,12 @@ import java.time.Instant;
 @Service
 @RequiredArgsConstructor
 class ReadCouponService {
-    private final CouponDao couponDao;
+    private final CouponRepository couponRepository;
 
     @Transactional(readOnly = true)
     boolean isDownloadable(final Long couponId, final Instant now) {
-        return couponDao.isDownloadable(couponId, now);
+        return couponRepository.findById(couponId)
+                .map(coupon -> coupon.isDownloadable(now))
+                .orElse(false);
     }
 }
