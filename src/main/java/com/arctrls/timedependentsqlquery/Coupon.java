@@ -2,6 +2,7 @@ package com.arctrls.timedependentsqlquery;
 
 import lombok.Getter;
 import lombok.experimental.Accessors;
+import org.springframework.util.Assert;
 
 import java.time.Instant;
 
@@ -14,6 +15,7 @@ public class Coupon {
     private Instant availableTo;
 
     public boolean isDownloadable(final Instant now) {
+        Assert.notNull(now, "[now] must not be null.");
         throw new UnsupportedOperationException("Not implemented yet");
     }
 }
