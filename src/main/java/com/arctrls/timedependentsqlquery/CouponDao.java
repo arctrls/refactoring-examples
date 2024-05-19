@@ -3,6 +3,8 @@ package com.arctrls.timedependentsqlquery;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.time.Instant;
+
 @Mapper
 interface CouponDao {
 
@@ -10,7 +12,7 @@ interface CouponDao {
             select exists(select id
                                   from coupon
                                   where id = #{couponId}
-                                    and now() between start_dt and end_dt)
+                                    and #{now} between start_dt and end_dt)
             """)
-    boolean isDownloadable(final Long couponId);
+    boolean isDownloadable(final Long couponId, final Instant now);
 }

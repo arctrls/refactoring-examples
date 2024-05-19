@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
+
 
 @Service
 @RequiredArgsConstructor
@@ -11,7 +13,7 @@ class ReadCouponService {
     private final CouponDao couponDao;
 
     @Transactional(readOnly = true)
-    boolean isDownloadable(final Long couponId) {
-        return couponDao.isDownloadable(couponId);
+    boolean isDownloadable(final Long couponId, final Instant now) {
+        return couponDao.isDownloadable(couponId, now);
     }
 }
