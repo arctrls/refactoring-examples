@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import java.time.Instant;
+import java.util.Optional;
 
 @Mapper
 interface CouponDao {
@@ -15,4 +16,6 @@ interface CouponDao {
                                     and #{now} between start_dt and end_dt)
             """)
     boolean isDownloadable(final Long couponId, final Instant now);
+
+    Optional<Coupon> findById(final Long couponId);
 }
